@@ -63,7 +63,7 @@ export class AuthService {
         return { user, token: this.singToken(user._id) };   
     }
 
-    public async validate( payload:{sub:string}): Promise<any> {
-        return await this.userService.findUserByEmail(payload.sub);
+    public async validate( id:string ) : Promise<any> {
+        return await this.userService.findUserById(id);
     }
 }
