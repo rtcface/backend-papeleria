@@ -31,7 +31,7 @@ export class AuthService {
         } as RegisterUserInput;
 
         const create = await this.userService.create(register);
-
+       
         return { user: create, token: this.singToken(create._id) };
      
     }
@@ -45,6 +45,7 @@ export class AuthService {
         if (!isValid) {
             throw new BadRequestException(`Password is incorrect`);
         }
+        
         return { user, token: this.singToken(user._id) };
     }
 

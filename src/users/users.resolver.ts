@@ -4,6 +4,7 @@ import { Query, Resolver } from '@nestjs/graphql';
 import { GqlAuthGuard } from 'src/auth/guards';
 
 import { UsersService } from './users.service';
+import { QueryUsersDto } from './dto/query-users.dto';
 
 
 @Resolver()
@@ -16,8 +17,10 @@ export class UsersResolver {
         return 'Welcome to app csip!!!!';
     }
 
-   
-
-   
+    @UseGuards(GqlAuthGuard)
+    @Query( () => [QueryUsersDto])
+    async getUsers() {
+        return this.userService.getUsers();
+    }   
     
 }

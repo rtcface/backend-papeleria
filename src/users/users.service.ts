@@ -21,4 +21,14 @@ export class UsersService {
     async findUserById(id:string): Promise<User> {
         return await this.usersModel.findById(id);
     } 
+
+    async getUsers(): Promise<User[]> {
+        const users = await this.usersModel.find().exec();
+        users.map(user=>{
+            delete user.password;
+            return user;
+        });
+        
+        return users;
+    }
 }
